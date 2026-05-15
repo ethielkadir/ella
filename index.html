@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Para Ti 💕</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@400;700&family=Noto+Sans+KR:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --pink: #f472b6;
+    --rose: #fb7185;
+    --magenta: #e879f9;
+    --gold: #fbbf24;
+    --cream: #fff1f5;
+    --deep: #831843;
+  }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: linear-gradient(160deg, #fff0f6 0%, #fce7f3 30%, #fdf2ff 60%, #fff0f6 100%);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* FLOATING HEARTS */
+  .hearts-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
+  .heart-float {
+    position: absolute;
+    font-size: 18px;
+    opacity: 0;
+    animation: floatUp linear infinite;
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(110vh) rotate(0deg) scale(0.5); opacity: 0; }
+    10% { opacity: 0.7; }
+    90% { opacity: 0.4; }
+    100% { transform: translateY(-10vh) rotate(360deg) scale(1.2); opacity: 0; }
+  }
+
+  /* SPARKLES */
+  .sparkle {
+    position: absolute;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+    animation: sparkle ease-in-out infinite;
+  }
+  @keyframes sparkle {
+    0%, 100% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1); opacity: 1; }
+  }
+
+  /* MAIN WRAPPER */
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 430px;
+    margin: 0 auto;
+    padding: 0 0 60px;
+  }
+
+  /* HERO */
+  .hero {
+    text-align: center;
+    padding: 60px 24px 40px;
+    position: relative;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #f472b6, #e879f9);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 20px rgba(244,114,182,0.4);
+  }
+  .hero-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 52px;
+    color: var(--deep);
+    line-height: 1.1;
+    margin-bottom: 12px;
+    text-shadow: 2px 2px 0px rgba(244,114,182,0.2);
+  }
+  .hero-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    color: #be185d;
+    font-style: italic;
+    letter-spacing: 1px;
+  }
+  .hero-hearts {
+    font-size: 28px;
+    margin: 16px 0;
+    display: block;
+    animation: pulse 1.5s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.15); }
+  }
+
+  /* NUMBER 67 */
+  .number-section {
+    margin: 10px 24px 32px;
+    background: linear-gradient(135deg, #fff0f6, #fdf2ff);
+    border: 2px solid rgba(244,114,182,0.3);
+    border-radius: 24px;
+    padding: 32px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(244,114,182,0.15);
+  }
+  .number-section::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(232,121,249,0.15), transparent);
+  }
+  .big-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 96px;
+    font-weight: 700;
+    line-height: 1;
+    background: linear-gradient(135deg, #f472b6, #a855f7, #ec4899);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .number-label {
+    font-family: 'Dancing Script', cursive;
+    font-size: 22px;
+    color: #be185d;
+  }
+  .number-desc {
+    font-size: 13px;
+    color: #9d174d;
+    margin-top: 8px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+
+  /* MESSAGE CARD */
+  .message-card {
+    margin: 0 24px 32px;
+    background: white;
+    border-radius: 24px;
+    padding: 32px 28px;
+    box-shadow: 0 8px 40px rgba(244,114,182,0.12);
+    border: 1.5px solid rgba(244,114,182,0.2);
+    position: relative;
+  }
+  .message-card::after {
+    content: '✦';
+    position: absolute;
+    top: 16px; right: 20px;
+    color: var(--pink);
+    font-size: 18px;
+    opacity: 0.4;
+  }
+  .message-label {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--pink);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .message-label::before, .message-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(244,114,182,0.3);
+  }
+  .message-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    line-height: 1.8;
+    color: #4a044e;
+    font-style: italic;
+    text-align: center;
+  }
+  .message-sig {
+    margin-top: 20px;
+    text-align: right;
+    font-family: 'Dancing Script', cursive;
+    font-size: 22px;
+    color: var(--rose);
+  }
+
+  /* KPOP SECTION */
+  .kpop-section {
+    margin: 0 24px 32px;
+  }
+  .section-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 28px;
+    color: var(--deep);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .groups-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .group-card {
+    border-radius: 18px;
+    padding: 20px 16px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    transition: transform 0.2s;
+    cursor: default;
+  }
+  .group-card:active { transform: scale(0.97); }
+  .group-card.bts {
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: white;
+  }
+  .group-card.enhypen {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
+  }
+  .group-card.twice {
+    background: linear-gradient(135deg, #ff6b9d, #c44dff);
+    color: white;
+  }
+  .group-card.blackpink {
+    background: linear-gradient(135deg, #1a0030, #3d0070);
+    color: white;
+  }
+  .group-emoji { font-size: 30px; margin-bottom: 6px; display: block; }
+  .group-name {
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 1px;
+    display: block;
+  }
+  .group-kr {
+    font-size: 11px;
+    opacity: 0.7;
+    margin-top: 2px;
+    display: block;
+  }
+  .group-tag {
+    display: inline-block;
+    font-size: 10px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    margin-top: 8px;
+    background: rgba(255,255,255,0.15);
+    letter-spacing: 0.5px;
+  }
+
+  /* JENNIE CARD */
+  .jennie-card {
+    margin: 0 24px 32px;
+    background: linear-gradient(135deg, #1a0030 0%, #4a0060 50%, #1a0030 100%);
+    border-radius: 24px;
+    padding: 28px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(100,0,150,0.3);
+  }
+  .jennie-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .jennie-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: #f9c6ff;
+    margin-bottom: 4px;
+    position: relative;
+  }
+  .jennie-subtitle {
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(249,198,255,0.6);
+    margin-bottom: 16px;
+    position: relative;
+  }
+  .jennie-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-style: italic;
+    color: rgba(249,198,255,0.85);
+    line-height: 1.7;
+    position: relative;
+  }
+  .jennie-stars {
+    font-size: 20px;
+    margin: 12px 0;
+    display: block;
+    position: relative;
+    letter-spacing: 4px;
+  }
+
+  /* BIRTHDAY SECTION */
+  .birthday-section {
+    margin: 0 24px 32px;
+    text-align: center;
+  }
+  .birthday-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 38px;
+    background: linear-gradient(135deg, #f472b6, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 16px;
+  }
+  .candles {
+    font-size: 40px;
+    letter-spacing: 4px;
+    margin-bottom: 16px;
+    display: block;
+    animation: shake 3s ease-in-out infinite;
+  }
+  @keyframes shake {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(-2deg); }
+    75% { transform: rotate(2deg); }
+  }
+  .confetti-row {
+    font-size: 22px;
+    letter-spacing: 6px;
+    margin-bottom: 20px;
+    display: block;
+  }
+  .wish-box {
+    background: linear-gradient(135deg, #fff0f6, #fdf2ff);
+    border: 1.5px solid rgba(244,114,182,0.25);
+    border-radius: 20px;
+    padding: 24px;
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    line-height: 1.8;
+    color: #4a044e;
+    font-style: italic;
+  }
+
+  /* FOOTER */
+  .footer {
+    text-align: center;
+    padding: 20px 24px 40px;
+  }
+  .footer-hearts {
+    font-size: 24px;
+    letter-spacing: 8px;
+    display: block;
+    margin-bottom: 12px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  .footer-text {
+    font-family: 'Dancing Script', cursive;
+    font-size: 18px;
+    color: #be185d;
+  }
+
+  /* CONFETTI CANVAS */
+  #confetti-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 999;
+  }
+
+  /* DIVIDER */
+  .divider {
+    text-align: center;
+    margin: 0 24px 28px;
+    color: var(--pink);
+    font-size: 18px;
+    letter-spacing: 6px;
+    opacity: 0.5;
+  }
+
+  /* SCROLL REVEAL */
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<canvas id="confetti-canvas"></canvas>
+
+<!-- Floating hearts background -->
+<div class="hearts-bg" id="hearts-bg"></div>
+
+<div class="wrapper">
+
+  <!-- HERO -->
+  <div class="hero reveal">
+    <div class="hero-badge">✨ Feliz Cumpleaños ✨</div>
+    <span class="hero-hearts">💕 💗 💕</span>
+    <h1 class="hero-title">Para ti,<br>mi pequeña niña</h1>
+    <p class="hero-subtitle">En este día tan especial</p>
+  </div>
+
+  <!-- NUMBER 67 -->
+  <div class="number-section reveal">
+    <span class="big-number">67</span>
+    <div class="number-label">razones para amarte</div>
+    <div class="number-desc">Hoy se celebran 67 momentos contigo,<br>67 pensamientos que tratan sobre ti,<br>67 formas en que me alegras la vida 💜</div>
+  </div>
+
+  <div class="divider">❋ ❋ ❋</div>
+
+  <!-- MESSAGE -->
+  <div class="message-card reveal">
+    <div class="message-label">Mi mensaje para ti</div>
+    <p class="message-text">
+      <!-- ✏️ REEMPLAZA ESTE TEXTO CON TU MENSAJE PERSONAL -->
+      Hoy cumple años mi tete, la princesa que ilumina mis días siempre, la que ,e hace feliz incluso cuando no hay ni ganas de sonreir, por eso hice esto para ti<br><br>
+      Que este cumpleaños esté lleno de todos los regalos, el amor y la alegría que tú mereces. 🌸
+    </p>
+    <div class="message-sig">
+      — Con todo mi amor de mi para mi bebé Lyann 💕 
+      <!-- ✏️ PUEDES PONER TU NOMBRE AQUÍ -->
+    </div>
+  </div>
+
+  <div class="divider">✦ ✦ ✦</div>
+
+  <!-- KPOP GROUPS -->
+  <div class="kpop-section reveal">
+    <h2 class="section-title">🎵 Tu universo K-pop 🎵</h2>
+    <div class="groups-grid">
+      <div class="group-card bts">
+        <span class="group-emoji">💜</span>
+        <span class="group-name">BTS</span>
+        <span class="group-kr">방탄소년단</span>
+        <span class="group-tag">Love Myself</span>
+      </div>
+      <div class="group-card enhypen">
+        <span class="group-emoji">🌙</span>
+        <span class="group-name">ENHYPEN</span>
+        <span class="group-kr">엔하이픈</span>
+        <span class="group-tag">Given-Taken</span>
+      </div>
+      <div class="group-card twice">
+        <span class="group-emoji">🦋</span>
+        <span class="group-name">TWICE</span>
+        <span class="group-kr">트와이스</span>
+        <span class="group-tag">Feel Special</span>
+      </div>
+      <div class="group-card blackpink">
+        <span class="group-emoji">🖤</span>
+        <span class="group-name">BLACKPINK</span>
+        <span class="group-kr">블랙핑크</span>
+        <span class="group-tag">In Your Area</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- JENNIE CARD -->
+  <div class="jennie-card reveal">
+    <div class="jennie-title">✨ Jennie ✨</div>
+    <div class="jennie-subtitle">Kim Jennie • 제니</div>
+    <span class="jennie-stars">★ ★ ★ ★ ★</span>
+    <div class="jennie-quote">
+      "Como ella, tú también tienes ese brillo que nadie puede imitar. Única, poderosa y absolutamente irresistible."
+    </div>
+    <span class="jennie-stars" style="margin-top:14px; font-size:16px;">🌹 Solo 🎵 You & Me 🎵 Mantra 🌹</span>
+  </div>
+
+  <div class="divider">❋ ❋ ❋</div>
+
+  <!-- BIRTHDAY -->
+  <div class="birthday-section reveal">
+    <h2 class="birthday-title">🎂 ¡Feliz Cumpleaños! 🎂</h2>
+    <span class="confetti-row">🎉 🎊 🎁 🎊 🎉</span>
+    <span class="candles">🕯️ 🕯️ 🕯️</span>
+    <div class="wish-box">
+      Pide un deseo muy grande y cierra los ojos… porque hoy el universo está conspirando para darte todo lo que mereces. 
+      <br><br>
+      생일 축하해! 
+      <br>
+      <span style="font-size:13px; opacity:0.7;">(¡Feliz cumpleaños en coreano!) 🎂</span>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer reveal">
+    <span class="footer-hearts">💕 💗 💕</span>
+    <div class="footer-text">Hecho con todo mi amor para ti 🌸</div>
+  </div>
+
+</div>
+
+<script>
+  // Floating hearts
+  const heartsContainer = document.getElementById('hearts-bg');
+  const heartEmojis = ['💕', '💗', '💖', '💝', '🌸', '✨', '💜', '🌷', '⭐', '💫'];
+  for (let i = 0; i < 25; i++) {
+    const h = document.createElement('div');
+    h.className = 'heart-float';
+    h.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+    h.style.left = Math.random() * 100 + '%';
+    h.style.fontSize = (12 + Math.random() * 18) + 'px';
+    h.style.animationDuration = (6 + Math.random() * 10) + 's';
+    h.style.animationDelay = (Math.random() * 12) + 's';
+    heartsContainer.appendChild(h);
+  }
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Confetti
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+
+  const colors = ['#f472b6','#e879f9','#fb7185','#fbbf24','#a855f7','#ec4899','#38bdf8'];
+  let pieces = [];
+  let active = true;
+
+  function spawnConfetti() {
+    if (!active) return;
+    for (let i = 0; i < 5; i++) {
+      pieces.push({
+        x: Math.random() * canvas.width,
+        y: -10,
+        size: 5 + Math.random() * 8,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        speed: 1.5 + Math.random() * 2.5,
+        angle: Math.random() * 360,
+        spin: (Math.random() - 0.5) * 5,
+        drift: (Math.random() - 0.5) * 1.5,
+        shape: Math.random() > 0.5 ? 'rect' : 'circle'
+      });
+    }
+    setTimeout(spawnConfetti, 200);
+  }
+
+  function animateConfetti() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    pieces = pieces.filter(p => p.y < canvas.height + 20);
+    pieces.forEach(p => {
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.angle * Math.PI / 180);
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = 0.85;
+      if (p.shape === 'rect') {
+        ctx.fillRect(-p.size/2, -p.size/4, p.size, p.size/2);
+      } else {
+        ctx.beginPath();
+        ctx.arc(0, 0, p.size/2, 0, Math.PI*2);
+        ctx.fill();
+      }
+      ctx.restore();
+      p.y += p.speed;
+      p.x += p.drift;
+      p.angle += p.spin;
+    });
+    requestAnimationFrame(animateConfetti);
+  }
+
+  spawnConfetti();
+  animateConfetti();
+
+  // Stop confetti after 8 seconds
+  setTimeout(() => { active = false; }, 8000);
+</script>
+</body>
+</html>
